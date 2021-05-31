@@ -1,6 +1,5 @@
 import React from "react";
 import { Table, Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 
