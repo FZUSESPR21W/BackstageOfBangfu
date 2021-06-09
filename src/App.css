@@ -1,5 +1,5 @@
-* {
-    padding: 0;
-    margin: 0;
-    position: relative;
+@import '~antd/dist/antd.css';
+
+.App {
+    height: 100%;
 }
