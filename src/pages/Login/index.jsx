@@ -1,23 +1,11 @@
-import { Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import imageUrl from "../../assets/image/login.png";
 import "./index.less";
-import { useState } from 'react';
 
 const Login = (props) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleClick = () => {
-        console.log("click!!!");
+    const handleFormFinish = (value) => {
+        console.log(value);
     };
 
     return (
@@ -27,26 +15,32 @@ const Login = (props) => {
                     <img src={imageUrl} alt="登陆图标" />
                 </div>
                 <div id="content_title">“帮福”后台管理系统</div>
-                <div id="content_input">
-                    <Input
-                        value={email}
-                        size="large"
-                        placeholder="请输入邮箱"
-                        prefix={<UserOutlined />}
-                        onChange={handleEmailChange} />
-                    <Input.Password
-                        value={password}
-                        size="large"
-                        placeholder="请输入密码"
-                        prefix={<LockOutlined />}
-                        iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                        onChange={handlePasswordChange} />
-                </div>
-                <div id="btn">
-                    <Button type="primary" size="large" onClick={handleClick}>
-                        登陆
-                    </Button>
-                </div>
+                <Form id="content_input" onFinish={handleFormFinish}>
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: '请填写邮箱!' }]}
+                    >
+                        <Input
+                            size="large"
+                            placeholder="请输入邮箱"
+                            prefix={<UserOutlined />} />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: '请填写密码!' }]}
+                    >
+                        <Input.Password
+                            size="large"
+                            placeholder="请输入密码"
+                            prefix={<LockOutlined />}
+                            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" size="large" htmlType="submit">
+                            登陆
+                        </Button>
+                    </Form.Item>
+                </Form>
             </div>
         </div>
     )
