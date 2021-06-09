@@ -12,7 +12,12 @@ const columns = [
     render: (text) => POST_TYPE[text],
   },
   { title: "时间", dataIndex: "time", key: "time" },
-  { title: "状态", dataIndex: "status", key: "status" },
+  {
+    title: "状态",
+    dataIndex: "status",
+    key: "status",
+    render: (_) => "未审核",
+  },
 ];
 
 export { columns };
