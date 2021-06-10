@@ -1,23 +1,35 @@
 import { Layout as ALayout } from "antd";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/index";
 
-const { Content } = ALayout;
+const { Content, Sider } = ALayout;
 
 const Layout = ({ children }) => {
-  const history = useHistory();
-  const [showSidebar, setShowSideBar] = useState(false);
-  useEffect(() => {
-    console.log(history.location.pathname)
-    setShowSideBar(history.location.pathname.indexOf("login") === -1);
-  }, [history]);
-  return (
-    <ALayout>
-      {showSidebar && <Sidebar />}
-      <Content>{children}</Content>
-    </ALayout>
-  );
+    const { pathname } = useLocation();
+    const [showSidebar, setShowSideBar] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+
+    useEffect(() => {
+        console.log(pathname)
+        setShowSideBar(pathname.indexOf("login") === -1);
+    }, [pathname]);
+
+    const hanldeCollapse = (collapsed) => {
+        setCollapsed(collapsed);
+    }
+
+    return (
+        <ALayout className="alayout">
+            {showSidebar &&
+                <Sider collapsible collapsed={collapsed} onCollapse={hanldeCollapse}>
+                    <Sidebar />
+                </Sider>
+            }
+
+            <Content>{children}</Content>
+        </ALayout>
+    );
 };
 
 export default Layout;
