@@ -5,6 +5,7 @@ const componentClsPrefixs = {
 
 const pageClsPrefixs = {
   Post: "Post",
+  Comment: "Comment",
 }
 
 export { componentClsPrefixs, pageClsPrefixs };
