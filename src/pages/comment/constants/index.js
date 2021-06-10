@@ -2,24 +2,24 @@ import { POST_TYPE } from "@/constants";
 import { sliceWords } from "@/utils";
 
 const columns = [
-  { title: "序号", dataIndex: "postId", key: "postId" },
+  { title: "序号", dataIndex: "commentId", key: "commentId" },
   { title: "用户", dataIndex: "userName", key: "userName" },
   {
     title: "帖子标题",
-    dataIndex: "title",
-    key: "title",
+    dataIndex: "postTitle",
+    key: "postTitle",
     render: (text) => sliceWords(text, 20),
   },
   {
-    title: "帖子内容",
+    title: "评论内容",
     dataIndex: "content",
     key: "content",
     render: (text) => sliceWords(text, 20),
   },
   {
     title: "论坛",
-    dataIndex: "type",
-    key: "type",
+    dataIndex: "postType",
+    key: "postType",
     render: (text) => POST_TYPE[text],
   },
   { title: "时间", dataIndex: "time", key: "time" },

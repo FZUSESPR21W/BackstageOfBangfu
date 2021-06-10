@@ -43,3 +43,4 @@ axios.interceptors.response.use(
 );
 
 export * as PostServices from './post'
+export * as CommentServices from './comment'

@@ -18,6 +18,7 @@ const themeTable = (props) => {
     onSearch,
     onChange,
     loading,
+    rowKey,
   } = props;
   return (
     <>
@@ -29,7 +30,7 @@ const themeTable = (props) => {
         loading={loading}
       />
       <Table
-        rowKey="postId"
+        rowKey={rowKey}
         loading={loading}
         className={setClsPrefix("table")}
         columns={columns}
