@@ -6,6 +6,8 @@ import "./index.less";
 const Login = (props) => {
     const handleFormFinish = (value) => {
         console.log(value);
+        localStorage.setItem("token", "1");
+        props.history.push("/post");
     };
 
     return (
