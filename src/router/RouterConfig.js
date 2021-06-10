@@ -1,6 +1,7 @@
 import Login from "../pages/Login/index";
 import Post from "@/pages/post";
 import Comment from "@/pages/comment";
+import Task from "@/pages/task";
 
 const RouterConfig = [
   {
@@ -16,6 +17,11 @@ const RouterConfig = [
   {
     path: "/comment",
     component: Comment,
+    auth: true,
+  },
+  {
+    path: "/task",
+    component: Task,
     auth: true,
   },
 ];
