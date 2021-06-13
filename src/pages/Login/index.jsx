@@ -9,14 +9,24 @@ import imageUrl from "../../assets/image/login.png";
 import "./index.less";
 import styles from "./index.module.less";
 import { useHistory } from 'react-router-dom';
-console.log(styles);
+import axios from 'axios';
+import qs from 'qs';
 
 const Login = (props) => {
-  const history = useHistory()
-  const handleFormFinish = (value) => {
-    console.log(value);
-    localStorage.setItem("token", "1");
-    history.replace("/post");
+  const history = useHistory();
+
+  const handleFormFinish = async (value) => {
+    const { email, password } = value;
+    const res = await axios.post(`/login`, qs.stringify({
+      email,
+      psw: password
+    }));
+
+    const { error, token } = res.data;
+    if (error === 0) {
+      localStorage.setItem("token", token);
+      history.replace("/post");
+    }
   };
 
   return (

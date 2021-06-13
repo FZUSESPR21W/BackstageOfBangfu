@@ -16,7 +16,7 @@ const Sidebar = (props) => {
 
     const handleItemClick = (item) => {
         const { key } = item;
-        if (key === "login") {
+        if (key === "/login") {
             localStorage.clear();
         }
 

@@ -7,7 +7,7 @@ import axios from "axios";
 axios.interceptors.request.use(
   (config) => {
     let url = config.url;
-    console.log(config);
+    // console.log(config);
     if (url === "/user/login") {
       return config;
     } else {
