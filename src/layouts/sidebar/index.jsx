@@ -43,7 +43,7 @@ const Sidebar = (props) => {
                 <Menu.Item key="/task" icon={<CarryOutOutlined />} onClick={handleItemClick}>
                     任务管理
                 </Menu.Item>
-                <Menu.Item key="/user" icon={<UserOutlined />} onClick={handleItemClick}>
+                <Menu.Item key="/report" icon={<UserOutlined />} onClick={handleItemClick}>
                     用户管理
                 </Menu.Item>
                 <Menu.Item key="/login" icon={<LogoutOutlined />} onClick={handleItemClick}>
