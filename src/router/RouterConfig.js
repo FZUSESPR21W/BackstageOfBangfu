@@ -2,6 +2,7 @@ import Login from "../pages/Login/index";
 import Post from "@/pages/post";
 import Comment from "@/pages/comment";
 import Task from "@/pages/task";
+import Report from "@/pages/report"
 
 const RouterConfig = [
   {
@@ -24,6 +25,11 @@ const RouterConfig = [
     component: Task,
     auth: true,
   },
+  {
+    path: "/report",
+    component: Report,
+    auth: true,
+  }
 ];
 
 export default RouterConfig;

@@ -44,3 +44,4 @@ axios.interceptors.response.use(
 export * as PostServices from "./post";
 export * as CommentServices from "./comment";
 export * as TaskServices from "./task";
+export * as ReportServices from "./report";
