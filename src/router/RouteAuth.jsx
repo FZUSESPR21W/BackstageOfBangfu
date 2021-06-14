@@ -10,10 +10,19 @@ const RouteAuth = (props) => {
     const token = localStorage.getItem("token") || '';
 
     if (pathname === "/") {
-        return <Redirect to="login"></Redirect>;
+        if (token.length > 0) {
+            return <Redirect to="post"></Redirect>;
+        }
+        else {
+            return <Redirect to="login"></Redirect>;
+        }
     }
 
     if (token.length > 0) {
+        if (pathname === "/login") {
+            return <Redirect to="post"></Redirect>;
+        }
+
         return (
             <Route exact path={pathname} component={targetRouter.component} />
         );
