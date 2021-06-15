@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "http://8.140.24.15:8880";
+axios.defaults.baseURL = "http://8.140.24.15:8880";
 // axios.defaults.withCredentials = true;
 
 // 配置请求拦截

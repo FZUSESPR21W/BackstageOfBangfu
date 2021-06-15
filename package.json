@@ -164,5 +164,6 @@
       "react-app"
     ]
   },
-  "proxy": "http://8.140.24.15:8880"
+  "proxy": "http://8.140.24.15:8880",
+  "homepage": "/back"
 }
