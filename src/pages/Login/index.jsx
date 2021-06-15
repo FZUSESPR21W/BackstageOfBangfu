@@ -1,4 +1,4 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, notification } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -22,10 +22,19 @@ const Login = (props) => {
       psw: password
     }));
 
-    const { error, token } = res.data;
-    if (error === 0) {
+    console.log(res.data);
+    const { error, token, isManager } = res.data;
+    if (error === 0 && isManager === 1) {
       localStorage.setItem("token", token);
       history.replace("/post");
+    }
+    else {
+      notification['error']({
+        message: '错误',
+        description:
+          '请检查邮箱或是密码是否正确，以及该账号是否有管理员权限！',
+        duration: 3,
+      });
     }
   };
 
