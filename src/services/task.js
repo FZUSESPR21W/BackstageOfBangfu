@@ -6,7 +6,7 @@ export const searchTask = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 3,
+        msgType: 2,
       },
     });
   } else {
@@ -14,7 +14,7 @@ export const searchTask = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 3,
+        msgType: 2,
       },
     });
   }
@@ -28,7 +28,7 @@ export const auditTask = async (taskId, mock = false) => {
       {
         params: {
           id: taskId,
-          msgType: 4,
+          msgType: 3,
         },
       }
     );
@@ -36,7 +36,7 @@ export const auditTask = async (taskId, mock = false) => {
     return axios.put(`/app/mock/data/1991338?scope=response`, {
       params: {
         id: taskId,
-        msgType: 4,
+        msgType: 3,
       },
     });
   }
@@ -47,14 +47,14 @@ export const deleteTask = async (taskId, mock = false) => {
     return axios.delete(`/back/delete`, {
       params: {
         id: taskId,
-        msgType: 4,
+        msgType: 3,
       },
     });
   } else {
     return axios.delete("/app/mock/data/1991339?scope=response", {
       params: {
         id: taskId,
-        msgType: 4,
+        msgType: 3,
       },
     });
   }
