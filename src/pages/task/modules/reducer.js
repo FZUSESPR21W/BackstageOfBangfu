@@ -5,14 +5,14 @@ const defaultState = fromJS({
   totalPage: 0,
   currentPage: 1,
   totalNum: 0,
-  tasks: []
+  posts: []
 })
 
 const reducer = (state = defaultState, action) => {
   if (action.type === SEARCH_TASK) {
-    const { tasks, ...restPayload } = action.payload
+    const { posts, ...restPayload } = action.payload
     return state.merge({
-      tasks: fromJS(tasks),
+      posts: fromJS(posts),
       ...restPayload
     })
   }

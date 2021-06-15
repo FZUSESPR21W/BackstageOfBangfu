@@ -13,7 +13,7 @@ export const changeData = (data) => ({
 export const searchPost = (tag, page) => {
   return async (disptach) => {
     try {
-      const res = await PostServices.searchPost(tag, page, true);
+      const res = await PostServices.searchPost(tag, page);
       const { error, data } = res.data;
       if (error !== 0) {
         return false;
@@ -52,7 +52,7 @@ export const getPostDetail = (postId) => {
 export const auditPost = (postId) => {
   return async () => {
     try {
-      const res = await PostServices.auditPost(postId, true)
+      const res = await PostServices.auditPost(postId)
       const { error } = res.data;
       if (error !== 0) {
         return false;
@@ -68,7 +68,7 @@ export const auditPost = (postId) => {
 export const deletePost = (postId) => {
   return async () => {
     try {
-      const res = await PostServices.deletePost(postId, true)
+      const res = await PostServices.deletePost(postId)
       const { error } = res.data;
       if (error !== 0) {
         return false;

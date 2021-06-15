@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const searchTask = async (tag, page, mock = false) => {
   if (mock === false) {
-    return axios.get(`/api/back/show`, {
+    return axios.get(`/back/show`, {
       params: {
         tag,
         page,
@@ -22,17 +22,21 @@ export const searchTask = async (tag, page, mock = false) => {
 
 export const auditTask = async (taskId, mock = false) => {
   if (mock === false) {
-    return axios.put(`/api/back/check`, {
-      params: {
-        id: taskId,
-        msgType: 3,
-      },
-    });
+    return axios.put(
+      `/back/check`,
+      {},
+      {
+        params: {
+          id: taskId,
+          msgType: 4,
+        },
+      }
+    );
   } else {
     return axios.put(`/app/mock/data/1991338?scope=response`, {
       params: {
         id: taskId,
-        msgType: 3,
+        msgType: 4,
       },
     });
   }
@@ -40,17 +44,17 @@ export const auditTask = async (taskId, mock = false) => {
 
 export const deleteTask = async (taskId, mock = false) => {
   if (mock === false) {
-    return axios.delete(`/api/back/delete`, {
+    return axios.delete(`/back/delete`, {
       params: {
         id: taskId,
-        msgType: 3,
+        msgType: 4,
       },
     });
   } else {
     return axios.delete("/app/mock/data/1991339?scope=response", {
       params: {
         id: taskId,
-        msgType: 3,
+        msgType: 4,
       },
     });
   }

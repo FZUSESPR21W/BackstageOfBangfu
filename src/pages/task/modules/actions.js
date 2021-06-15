@@ -11,7 +11,7 @@ export const changeData = (data) => ({
 export const searchTask = (tag, page) => {
   return async (disptach) => {
     try {
-      const res = await TaskServices.searchTask(tag, page, true);
+      const res = await TaskServices.searchTask(tag, page);
       const { error, data } = res.data;
       if (error !== 0) {
         return false;
@@ -29,7 +29,7 @@ export const searchTask = (tag, page) => {
 export const auditTask = (taskId) => {
   return async () => {
     try {
-      const res = await TaskServices.auditTask(taskId, true)
+      const res = await TaskServices.auditTask(taskId)
       const { error } = res.data;
       if (error !== 0) {
         return false;
@@ -45,7 +45,7 @@ export const auditTask = (taskId) => {
 export const deleteTask = (taskId) => {
   return async () => {
     try {
-      const res = await TaskServices.deleteTask(taskId, true)
+      const res = await TaskServices.deleteTask(taskId)
       const { error } = res.data;
       if (error !== 0) {
         return false;

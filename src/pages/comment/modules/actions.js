@@ -11,7 +11,7 @@ export const changeData = (data) => ({
 export const searchComment = (tag, page) => {
   return async (disptach) => {
     try {
-      const res = await CommentServices.searchComment(tag, page, true);
+      const res = await CommentServices.searchComment(tag, page);
       const { error, data } = res.data;
       if (error !== 0) {
         return false;
@@ -29,7 +29,7 @@ export const searchComment = (tag, page) => {
 export const auditComment = (commentId) => {
   return async () => {
     try {
-      const res = await CommentServices.auditComment(commentId, true)
+      const res = await CommentServices.auditComment(commentId)
       const { error } = res.data;
       if (error !== 0) {
         return false;
@@ -45,7 +45,7 @@ export const auditComment = (commentId) => {
 export const deleteComment = (commentId) => {
   return async () => {
     try {
-      const res = await CommentServices.deleteComment(commentId, true)
+      const res = await CommentServices.deleteComment(commentId)
       const { error } = res.data;
       if (error !== 0) {
         return false;

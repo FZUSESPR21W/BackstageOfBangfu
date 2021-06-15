@@ -2,10 +2,11 @@ import axios from "axios";
 
 export const searchPost = async (tag, page, mock = false) => {
   if (mock === false) {
-    return axios.get(`/api/back/posts/show`, {
+    return axios.get(`/back/show`, {
       params: {
         tag,
         page,
+        msgType: 0,
       },
     });
   } else {
@@ -20,7 +21,16 @@ export const searchPost = async (tag, page, mock = false) => {
 
 export const auditPost = async (postId, mock = false) => {
   if (mock === false) {
-    return axios.put(`/api/back/posts/check/${postId}`);
+    return axios.put(
+      `/back/check`,
+      {},
+      {
+        params: {
+          id: postId,
+          msgType: 1,
+        },
+      }
+    );
   } else {
     return axios.put(`/app/mock/data/1989112?scope=response`);
   }
@@ -28,7 +38,12 @@ export const auditPost = async (postId, mock = false) => {
 
 export const deletePost = async (postId, mock = false) => {
   if (mock === false) {
-    return axios.delete(`/api/back/posts/delete/${postId}`);
+    return axios.delete(`/back/delete`, {
+      params: {
+        id: postId,
+        msgType: 1,
+      },
+    });
   } else {
     return axios.delete("/app/mock/data/1989123?scope=response");
   }

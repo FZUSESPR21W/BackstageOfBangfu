@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const searchReport = async (tag, page, mock = false) => {
   if (mock === false) {
-    return axios.get(`/api/back/show`, {
+    return axios.get(`/back/show`, {
       params: {
         tag,
         page,
@@ -22,7 +22,7 @@ export const searchReport = async (tag, page, mock = false) => {
 
 export const auditReport = async (reportId, mock = false) => {
   if (mock === false) {
-    return axios.put(`/api/back/check`, {
+    return axios.put(`/back/check`, {
       params: {
         id: reportId,
         msgType: 2,
@@ -40,7 +40,7 @@ export const auditReport = async (reportId, mock = false) => {
 
 export const deleteReport = async (reportId, mock = false) => {
   if (mock === false) {
-    return axios.delete(`/api/back/delete`, {
+    return axios.delete(`/back/delete`, {
       params: {
         id: reportId,
         msgType: 2,

@@ -6,7 +6,6 @@ import { pageClsPrefixs } from "../../constants";
 import { Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { auditPost, searchPost, deletePost } from "./modules/actions";
-import delay from "delay";
 
 import "./index.less";
 
@@ -20,10 +19,9 @@ const Post = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getPostData = async () => {
+  const getPostData = async (page) => {
     setLoading(true);
-    await dispatch(searchPost(value, current));
-    await delay(1000);
+    await dispatch(searchPost(value, page || current));
     setLoading(false);
   };
 
@@ -67,13 +65,15 @@ const Post = () => {
     dataIndex: "action",
     render: (_, record) => (
       <>
-        <Button
-          onClick={() => handleAudit(record.postId)}
-          type="primary"
-          className={setClsPrefix("audit-btn")}
-        >
-          通过审核
-        </Button>
+        { record.status === 0 &&
+          <Button
+            onClick={() => handleAudit(record.postId)}
+            type="primary"
+            className={setClsPrefix("audit-btn")}
+          >
+            通过审核
+          </Button>
+        }
         <Button onClick={() => handleDelete(record.postId)} type="primary">
           删除
         </Button>
@@ -84,7 +84,7 @@ const Post = () => {
   // pagination
   const handleChange = (current) => {
     setCurrent(current);
-    getPostData();
+    getPostData(current);
   };
 
   return (

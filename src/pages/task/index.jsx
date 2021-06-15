@@ -14,7 +14,7 @@ const setClsPrefix = setClsPrefixHOC(pageClsPrefixs.Task);
 
 const Task = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.getIn(["task", "tasks"]).toJS());
+  const data = useSelector((state) => state.getIn(["task", "posts"]).toJS());
   const total = useSelector((state) => state.getIn(["task", "totalNum"]));
   const [current, setCurrent] = useState(1);
   const [value, setValue] = useState("");

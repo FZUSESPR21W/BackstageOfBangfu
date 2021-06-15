@@ -11,7 +11,7 @@ export const changeData = (data) => ({
 export const searchReport = (tag, page) => {
   return async (disptach) => {
     try {
-      const res = await ReportServices.searchReport(tag, page, true);
+      const res = await ReportServices.searchReport(tag, page, false);
       const { error, data } = res.data;
       if (error !== 0) {
         return false;
@@ -29,7 +29,7 @@ export const searchReport = (tag, page) => {
 export const auditReport = (reportId) => {
   return async () => {
     try {
-      const res = await ReportServices.auditReport(reportId, true)
+      const res = await ReportServices.auditReport(reportId, false)
       const { error } = res.data;
       if (error !== 0) {
         return false;
@@ -45,7 +45,7 @@ export const auditReport = (reportId) => {
 export const deleteReport = (reportId) => {
   return async () => {
     try {
-      const res = await ReportServices.deleteReport(reportId, true)
+      const res = await ReportServices.deleteReport(reportId, false)
       const { error } = res.data;
       if (error !== 0) {
         return false;

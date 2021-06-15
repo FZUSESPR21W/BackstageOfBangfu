@@ -12,4 +12,9 @@ const TASK_TYPE = {
   4: "其他",
 };
 
-export { POST_TYPE, TASK_TYPE };
+const STATUS_TYPE = {
+  0: "未审核",
+  1: "已审核",
+}
+
+export { POST_TYPE, TASK_TYPE, STATUS_TYPE };

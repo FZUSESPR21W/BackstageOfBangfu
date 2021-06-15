@@ -1,4 +1,4 @@
-import { POST_TYPE } from "@/constants";
+import { POST_TYPE, STATUS_TYPE } from "@/constants";
 import { sliceWords } from "@/utils";
 
 const columns = [
@@ -27,7 +27,7 @@ const columns = [
     title: "状态",
     dataIndex: "status",
     key: "status",
-    render: (_) => "未审核",
+    render: (text) => STATUS_TYPE[text],
   },
 ];
 

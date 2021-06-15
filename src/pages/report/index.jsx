@@ -14,7 +14,7 @@ const setClsPrefix = setClsPrefixHOC(pageClsPrefixs.Report);
 
 const Report = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.getIn(["report", "reports"]).toJS());
+  const data = useSelector((state) => state.getIn(["report", "posts"]).toJS());
   const total = useSelector((state) => state.getIn(["report", "totalNum"]));
   const [current, setCurrent] = useState(1);
   const [value, setValue] = useState("");
@@ -30,7 +30,7 @@ const Report = () => {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      await dispatch(searchReport("", 1));
+      await dispatch(searchReport("123", 1));
       setLoading(false);
     };
     getData();

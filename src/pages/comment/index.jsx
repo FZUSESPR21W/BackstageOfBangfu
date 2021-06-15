@@ -15,7 +15,7 @@ const setClsPrefix = setClsPrefixHOC(pageClsPrefixs.Comment);
 const Comment = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) =>
-    state.getIn(["comment", "comments"]).toJS()
+    state.getIn(["comment", "posts"]).toJS()
   );
   const total = useSelector((state) => state.getIn(["comment", "totalNum"]));
   const [current, setCurrent] = useState(1);

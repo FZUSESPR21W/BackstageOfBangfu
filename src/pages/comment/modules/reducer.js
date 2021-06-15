@@ -5,14 +5,14 @@ const defaultState = fromJS({
   totalPage: 0,
   currentPage: 1,
   totalNum: 0,
-  comments: []
+  posts: []
 })
 
 const reducer = (state = defaultState, action) => {
   if (action.type === SEARCH_COMMENT) {
-    const { comments, ...restPayload } = action.payload
+    const { posts, ...restPayload } = action.payload
     return state.merge({
-      comments: fromJS(comments),
+      posts: fromJS(posts),
       ...restPayload
     })
   }
