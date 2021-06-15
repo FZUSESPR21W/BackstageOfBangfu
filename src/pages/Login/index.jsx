@@ -1,4 +1,4 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, notification } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -11,21 +11,33 @@ import styles from "./index.module.less";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
+import { useState } from "react";
 
 const Login = (props) => {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   const handleFormFinish = async (value) => {
     const { email, password } = value;
+    setLoading(true);
     const res = await axios.post(`/login`, qs.stringify({
       email,
       psw: password
     }));
+    setLoading(false);
 
-    const { error, token } = res.data;
-    if (error === 0) {
+    const { error, token, isManager } = res.data;
+    if (error === 0 && isManager === 1) {
       localStorage.setItem("token", token);
       history.replace("/post");
+    }
+    else {
+      notification['error']({
+        message: '错误',
+        description:
+          '请检查邮箱或是密码是否正确，以及该账号是否有管理员权限！',
+        duration: 3,
+      });
     }
   };
 
@@ -62,7 +74,7 @@ const Login = (props) => {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" size="large" htmlType="submit">
+              <Button type="primary" size="large" htmlType="submit" loading={loading}>
                 登陆
               </Button>
             </Form.Item>
