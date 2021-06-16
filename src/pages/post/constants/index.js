@@ -1,5 +1,6 @@
 import { POST_TYPE, STATUS_TYPE } from "@/constants";
 import { sliceWords } from "@/utils";
+import dayjs from 'dayjs'
 
 const columns = [
   { title: "序号", dataIndex: "postId", key: "postId" },
@@ -22,7 +23,12 @@ const columns = [
     key: "type",
     render: (text) => POST_TYPE[text],
   },
-  { title: "时间", dataIndex: "time", key: "time" },
+  {
+    title: "时间",
+    dataIndex: "time",
+    key: "time",
+    render: (text) => dayjs(text).format("YYYY-MM-DD"),
+  },
   {
     title: "状态",
     dataIndex: "status",

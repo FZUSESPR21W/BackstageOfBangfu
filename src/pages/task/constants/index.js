@@ -1,5 +1,6 @@
-import { TASK_TYPE } from "@/constants";
+import { TASK_TYPE, STATUS_TYPE } from "@/constants";
 import { sliceWords } from "@/utils";
+import dayjs from "dayjs";
 
 const columns = [
   { title: "序号", dataIndex: "taskId", key: "taskId" },
@@ -22,12 +23,17 @@ const columns = [
     key: "type",
     render: (text) => TASK_TYPE[text],
   },
-  { title: "时间", dataIndex: "time", key: "time" },
+  {
+    title: "时间",
+    dataIndex: "time",
+    key: "time",
+    render: (text) => dayjs(text).format("YYYY-MM-DD"),
+  },
   {
     title: "状态",
     dataIndex: "status",
     key: "status",
-    render: (_) => "未审核",
+    render: (text) => STATUS_TYPE[text],
   },
 ];
 

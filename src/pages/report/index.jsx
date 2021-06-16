@@ -20,9 +20,9 @@ const Report = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getReportData = async () => {
+  const getReportData = async ({ page, text } = {}) => {
     setLoading(true);
-    await dispatch(searchReport(value, current));
+    await dispatch(searchReport(typeof text === 'undefined' ? value : text, page || current));
     await delay(1000);
     setLoading(false);
   };
@@ -30,7 +30,7 @@ const Report = () => {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      await dispatch(searchReport("123", 1));
+      await dispatch(searchReport("", 1));
       setLoading(false);
     };
     getData();
@@ -40,7 +40,7 @@ const Report = () => {
   const handleSearch = (value) => {
     setValue(value);
     setCurrent(1);
-    getReportData();
+    getReportData({ page: 1, text: value });
   };
 
   // action
@@ -64,6 +64,7 @@ const Report = () => {
 
   const actionColumns = {
     title: "操作",
+    width: 240,
     dataIndex: "action",
     render: (_, record) => (
       <>
@@ -84,7 +85,7 @@ const Report = () => {
   // pagination
   const handleChange = (current) => {
     setCurrent(current);
-    getReportData();
+    getReportData({ page: current });
   };
 
   return (
@@ -99,8 +100,6 @@ const Report = () => {
               <div>{record.content}</div>
             </div>
           ),
-          expandRowByClick: true,
-          expandIconColumnIndex: -1,
         }}
         rowKey="reportId"
         data={data}

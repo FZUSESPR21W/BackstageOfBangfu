@@ -1,4 +1,6 @@
 import { sliceWords } from "@/utils";
+import { REPORT_TYPE } from "@/constants"
+import dayjs from 'dayjs'
 
 const columns = [
   { title: "序号", dataIndex: "reportId", key: "reportId" },
@@ -20,9 +22,14 @@ const columns = [
     title: "分类",
     dataIndex: "type",
     key: "type",
-    render: (text) => text,
+    render: (text) => REPORT_TYPE[text],
   },
-  { title: "时间", dataIndex: "time", key: "time" },
+  {
+    title: "时间",
+    dataIndex: "time",
+    key: "time",
+    render: (text) => dayjs(text).format("YYYY-MM-DD"),
+  },
 ];
 
 export { columns };

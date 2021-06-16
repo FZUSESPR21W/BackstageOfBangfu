@@ -19,9 +19,11 @@ const Post = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getPostData = async (page) => {
+  const getPostData = async ({ page, text } = {}) => {
     setLoading(true);
-    await dispatch(searchPost(value, page || current));
+    await dispatch(
+      searchPost(typeof text !== "undefined" ? text : value, page || current)
+    );
     setLoading(false);
   };
 
@@ -36,9 +38,10 @@ const Post = () => {
 
   // search
   const handleSearch = (value) => {
+    console.log(value);
     setValue(value);
     setCurrent(1);
-    getPostData();
+    getPostData({ page: 1, text: value });
   };
 
   // action
@@ -63,9 +66,10 @@ const Post = () => {
   const actionColumns = {
     title: "操作",
     dataIndex: "action",
+    width: 240,
     render: (_, record) => (
       <>
-        { record.status === 0 &&
+        {record.status === 0 && (
           <Button
             onClick={() => handleAudit(record.postId)}
             type="primary"
@@ -73,7 +77,7 @@ const Post = () => {
           >
             通过审核
           </Button>
-        }
+        )}
         <Button onClick={() => handleDelete(record.postId)} type="primary">
           删除
         </Button>
@@ -84,7 +88,7 @@ const Post = () => {
   // pagination
   const handleChange = (current) => {
     setCurrent(current);
-    getPostData(current);
+    getPostData({ page: current });
   };
 
   return (
@@ -99,8 +103,6 @@ const Post = () => {
               <div>{record.content}</div>
             </div>
           ),
-          expandRowByClick: true,
-          expandIconColumnIndex: -1,
         }}
         rowKey="postId"
         data={data}

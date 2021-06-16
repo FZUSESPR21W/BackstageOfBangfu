@@ -6,7 +6,6 @@ import { pageClsPrefixs } from "../../constants";
 import { Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { auditTask, searchTask, deleteTask } from "./modules/actions";
-import delay from "delay";
 
 import "./index.less";
 
@@ -20,10 +19,9 @@ const Task = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getTaskData = async () => {
+  const getTaskData = async ({ page, text } = {}) => {
     setLoading(true);
-    await dispatch(searchTask(value, current));
-    await delay(1000);
+    await dispatch(searchTask(typeof text !== "undefined" ? text : value, page || current));
     setLoading(false);
   };
 
@@ -40,7 +38,7 @@ const Task = () => {
   const handleSearch = (value) => {
     setValue(value);
     setCurrent(1);
-    getTaskData();
+    getTaskData({ page: 1, text: value });
   };
 
   // action
@@ -65,6 +63,7 @@ const Task = () => {
   const actionColumns = {
     title: "操作",
     dataIndex: "action",
+    width: 240,
     render: (_, record) => (
       <>
         <Button
@@ -84,7 +83,7 @@ const Task = () => {
   // pagination
   const handleChange = (current) => {
     setCurrent(current);
-    getTaskData();
+    getTaskData({ page: current });
   };
 
   return (
@@ -99,8 +98,6 @@ const Task = () => {
               <div>{record.content}</div>
             </div>
           ),
-          expandRowByClick: true,
-          expandIconColumnIndex: -1,
         }}
         rowKey="taskId"
         data={data}

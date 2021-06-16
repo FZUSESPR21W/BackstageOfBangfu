@@ -6,7 +6,7 @@ export const searchReport = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 3,
+        msgType: 2,
       },
     });
   } else {
@@ -14,7 +14,7 @@ export const searchReport = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 3,
+        msgType: 2,
       },
     });
   }
@@ -22,12 +22,16 @@ export const searchReport = async (tag, page, mock = false) => {
 
 export const auditReport = async (reportId, mock = false) => {
   if (mock === false) {
-    return axios.put(`/back/check`, {
-      params: {
-        id: reportId,
-        msgType: 4,
-      },
-    });
+    return axios.put(
+      `/back/check`,
+      {},
+      {
+        params: {
+          id: reportId,
+          msgType: 4,
+        },
+      }
+    );
   } else {
     return axios.put(`/app/mock/data/1991485?scope=response`, {
       params: {

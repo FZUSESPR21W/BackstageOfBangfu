@@ -6,7 +6,7 @@ export const searchTask = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 2,
+        msgType: 3,
       },
     });
   } else {
@@ -14,7 +14,7 @@ export const searchTask = async (tag, page, mock = false) => {
       params: {
         tag,
         page,
-        msgType: 2,
+        msgType: 3,
       },
     });
   }

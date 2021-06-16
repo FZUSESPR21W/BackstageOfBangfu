@@ -6,7 +6,6 @@ import { pageClsPrefixs } from "../../constants";
 import { Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { auditComment, searchComment, deleteComment } from "./modules/actions";
-import delay from "delay";
 
 import "./index.less";
 
@@ -14,18 +13,17 @@ const setClsPrefix = setClsPrefixHOC(pageClsPrefixs.Comment);
 
 const Comment = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) =>
-    state.getIn(["comment", "posts"]).toJS()
-  );
+  const data = useSelector((state) => state.getIn(["comment", "posts"]).toJS());
   const total = useSelector((state) => state.getIn(["comment", "totalNum"]));
   const [current, setCurrent] = useState(1);
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getCommentData = async () => {
+  const getCommentData = async ({ page, text } = {}) => {
     setLoading(true);
-    await dispatch(searchComment(value, current));
-    await delay(1000);
+    await dispatch(
+      searchComment(typeof text !== "undefined" ? text : value, page || current)
+    );
     setLoading(false);
   };
 
@@ -42,7 +40,7 @@ const Comment = () => {
   const handleSearch = (value) => {
     setValue(value);
     setCurrent(1);
-    getCommentData();
+    getCommentData({ page: 1, text: value });
   };
 
   // action
@@ -67,6 +65,7 @@ const Comment = () => {
   const actionColumns = {
     title: "操作",
     dataIndex: "action",
+    width: 240,
     render: (_, record) => (
       <>
         <Button
@@ -86,7 +85,7 @@ const Comment = () => {
   // pagination
   const handleChange = (current) => {
     setCurrent(current);
-    getCommentData();
+    getCommentData({ page: current });
   };
 
   return (
@@ -101,8 +100,6 @@ const Comment = () => {
               <div>{record.content}</div>
             </div>
           ),
-          expandRowByClick: true,
-          expandIconColumnIndex: -1,
         }}
         rowKey="commentId"
         data={data}

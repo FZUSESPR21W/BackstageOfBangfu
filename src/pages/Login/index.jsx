@@ -8,9 +8,9 @@ import {
 import imageUrl from "../../assets/image/login.png";
 import "./index.less";
 import styles from "./index.module.less";
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import qs from 'qs';
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import qs from "qs";
 import { useState } from "react";
 
 const Login = (props) => {
@@ -20,29 +20,30 @@ const Login = (props) => {
   const handleFormFinish = async (value) => {
     const { email, password } = value;
     setLoading(true);
-    const res = await axios.post(`/login`, qs.stringify({
-      email,
-      psw: password
-    }));
+    const res = await axios.post(
+      `/login`,
+      qs.stringify({
+        email,
+        psw: password,
+      })
+    );
     setLoading(false);
 
     const { error, token, isManager } = res.data;
     if (error === 0 && isManager === 1) {
       localStorage.setItem("token", token);
       history.replace("/post");
-    }
-    else {
-      notification['error']({
-        message: '错误',
-        description:
-          '请检查邮箱或是密码是否正确，以及该账号是否有管理员权限！',
+    } else {
+      notification["error"]({
+        message: "错误",
+        description: "请检查邮箱或是密码是否正确，以及该账号是否有管理员权限！",
         duration: 3,
       });
     }
   };
 
   return (
-    <div className={styles.scope}>
+    <div className={styles.scope} style={{ height: "100vh" }}>
       <div className="login">
         <div id="content">
           <div id="content_logo">
@@ -74,7 +75,12 @@ const Login = (props) => {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" size="large" htmlType="submit" loading={loading}>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                loading={loading}
+              >
                 登陆
               </Button>
             </Form.Item>
