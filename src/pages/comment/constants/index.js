@@ -33,7 +33,7 @@ const columns = [
     title: "状态",
     dataIndex: "status",
     key: "status",
-    render: (text) => STATUS_TYPE[text],
+    render: (text) => STATUS_TYPE[text] || "未审核",
   },
 ];
 

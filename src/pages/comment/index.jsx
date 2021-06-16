@@ -68,13 +68,15 @@ const Comment = () => {
     width: 240,
     render: (_, record) => (
       <>
-        <Button
-          onClick={() => handleAudit(record.commentId)}
-          type="primary"
-          className={setClsPrefix("audit-btn")}
-        >
-          通过审核
-        </Button>
+        {record.status !== 1 && (
+          <Button
+            onClick={() => handleAudit(record.commentId)}
+            type="primary"
+            className={setClsPrefix("audit-btn")}
+          >
+            通过审核
+          </Button>
+        )}
         <Button onClick={() => handleDelete(record.commentId)} type="primary">
           删除
         </Button>

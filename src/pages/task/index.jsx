@@ -21,7 +21,9 @@ const Task = () => {
 
   const getTaskData = async ({ page, text } = {}) => {
     setLoading(true);
-    await dispatch(searchTask(typeof text !== "undefined" ? text : value, page || current));
+    await dispatch(
+      searchTask(typeof text !== "undefined" ? text : value, page || current)
+    );
     setLoading(false);
   };
 
@@ -66,13 +68,15 @@ const Task = () => {
     width: 240,
     render: (_, record) => (
       <>
-        <Button
-          onClick={() => handleAudit(record.taskId)}
-          type="primary"
-          className={setClsPrefix("audit-btn")}
-        >
-          通过审核
-        </Button>
+        {record.status !== 1 && (
+          <Button
+            onClick={() => handleAudit(record.taskId)}
+            type="primary"
+            className={setClsPrefix("audit-btn")}
+          >
+            通过审核
+          </Button>
+        )}
         <Button onClick={() => handleDelete(record.taskId)} type="primary">
           删除
         </Button>

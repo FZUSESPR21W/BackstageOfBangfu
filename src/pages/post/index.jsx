@@ -69,7 +69,7 @@ const Post = () => {
     width: 240,
     render: (_, record) => (
       <>
-        {record.status === 0 && (
+        {record.status !== 1 && (
           <Button
             onClick={() => handleAudit(record.postId)}
             type="primary"
